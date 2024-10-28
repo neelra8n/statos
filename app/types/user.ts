@@ -1,11 +1,11 @@
-import { OrganizationMember } from "./organization";
+import { Organization } from "./organization";
 
 export interface User {
     id: string;
     email: string;
     name: string;
     avatarUrl?: string;
-    organizations: OrganizationMember[];
+    organizations: Organization[];
     createdAt: Date;
     updatedAt: Date;
 }

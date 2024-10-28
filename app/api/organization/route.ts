@@ -1,11 +1,11 @@
 // src/app/api/organization/route.ts
+import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
-import { auth } from "@clerk/nextjs";
 // import prisma from "@/app/lib/prisma"; // Assuming you have prisma client setup
 
 export async function GET() {
     try {
-        const { userId, orgId } = auth();
+        const { userId, orgId } = await auth();
 
         if (!userId) {
             return new NextResponse("Unauthorized", { status: 401 });
@@ -23,11 +23,7 @@ export async function GET() {
         //     },
         // });
 
-        if (!organization) {
-            return new NextResponse("Organization not found", { status: 404 });
-        }
-
-        return NextResponse.json(organization);
+        return NextResponse.json({});
     } catch (error) {
         console.error("[ORGANIZATION_GET]", error);
         return new NextResponse("Internal Error", { status: 500 });
